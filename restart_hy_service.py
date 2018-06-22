@@ -321,7 +321,7 @@ class restartHYServer:
             print ('           2、重启 IGS;')
             print ('           3、重启 IGI;')
             print ('           4、重启 IPM;')
-            print ('           0、退出安装;'+TextColorWhite)
+            print ('           0、退出;'+TextColorWhite)
 
             choice=raw_input('请输入数值序号:')
             choice=choice.strip()
