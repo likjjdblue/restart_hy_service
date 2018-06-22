@@ -146,7 +146,7 @@ class restartHYServer:
                 isSucceed=flushRedisDB(host=self.MasterNodeIP,port=self.MasterNodePort,password=self.MasterNodePassword,
                              database=1)
                 if not isSucceed:
-                    print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启'+TextColorWhite)
+                    print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启，,请手动启动进程！'+TextColorWhite)
                     return 1
                 else:
                     print (TextColorGreen+'成功清理Redis缓存'+TextColorWhite)
@@ -191,7 +191,7 @@ class restartHYServer:
                 isSucceed=flushRedisDB(host=self.MasterNodeIP,port=self.MasterNodePort,password=self.MasterNodePassword,
                              database=7)
                 if not isSucceed:
-                    print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启'+TextColorWhite)
+                    print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启，,请手动启动进程！'+TextColorWhite)
                     return 1
                 else:
                     print (TextColorGreen+'成功清理Redis缓存'+TextColorWhite)
@@ -237,7 +237,7 @@ class restartHYServer:
                 isSucceed=flushRedisDB(host=self.MasterNodeIP,port=self.MasterNodePort,password=self.MasterNodePassword,
                              database=10)
                 if not isSucceed:
-                    print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启'+TextColorWhite)
+                    print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启，,请手动启动进程！'+TextColorWhite)
                     return 1
                 else:
                     print (TextColorGreen+'成功清理Redis缓存'+TextColorWhite)
@@ -281,7 +281,7 @@ class restartHYServer:
                 isSucceed=flushRedisDB(host=self.MasterNodeIP,port=self.MasterNodePort,password=self.MasterNodePassword,
                              database=10)
                 if not isSucceed:
-                    print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启'+TextColorWhite)
+                    print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启,请手动启动进程！'+TextColorWhite)
                     return 1
                 else:
                     print (TextColorGreen+'成功清理Redis缓存'+TextColorWhite)
