@@ -274,7 +274,6 @@ class restartHYServer:
         while True:
             Choice4FlushDB=raw_input('是否需要清空Redis 缓存(yes/no):')
             Choice4FlushDB=Choice4FlushDB.strip().lower()
-            Choice4FlushDB='no'    ### 检索IGS目前暂不支持清理缓存   #####
 
             if Choice4FlushDB=='yes':
                 print ('即将清理 Redis缓存....')
