@@ -24,10 +24,11 @@ def checkRootPrivilege():
   return str(RootUID)==str(CurrentUID)
 
 
-def flushRedisDB(host,port,password='',db=1):
+def flushRedisDB(host,port,password='',database=1):
     #### 清空redis 缓存####
+    print ('清理redis db:'+str(database))
     try:
-        TmpRedisObj=redis.StrictRedis(host=host,port=port,password=password,db=db,socket_connect_timeout=2)
+        TmpRedisObj=redis.StrictRedis(host=host,port=port,password=password,db=database,socket_connect_timeout=2)
         TmpRedisObj.flushdb()
         return True
     except Exception as e:
@@ -143,7 +144,7 @@ class restartHYServer:
             if Choice4FlushDB=='yes':
                 print ('即将清理 Redis缓存....')
                 isSucceed=flushRedisDB(host=self.MasterNodeIP,port=self.MasterNodePort,password=self.MasterNodePassword,
-                             db=1)
+                             database=1)
                 if not isSucceed:
                     print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启'+TextColorWhite)
                     return 1
@@ -183,12 +184,12 @@ class restartHYServer:
         while True:
             Choice4FlushDB=raw_input('是否需要清空Redis 缓存(yes/no):')
             Choice4FlushDB=Choice4FlushDB.strip().lower()
-            Choice4FlushDB='no'    ### 问政互动目前暂不支持清理缓存   #####
+###            Choice4FlushDB='no'    ### 问政互动目前暂不支持清理缓存   #####
 
             if Choice4FlushDB=='yes':
                 print ('即将清理 Redis缓存....')
                 isSucceed=flushRedisDB(host=self.MasterNodeIP,port=self.MasterNodePort,password=self.MasterNodePassword,
-                             db=1)
+                             database=7)
                 if not isSucceed:
                     print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启'+TextColorWhite)
                     return 1
@@ -234,7 +235,7 @@ class restartHYServer:
             if Choice4FlushDB=='yes':
                 print ('即将清理 Redis缓存....')
                 isSucceed=flushRedisDB(host=self.MasterNodeIP,port=self.MasterNodePort,password=self.MasterNodePassword,
-                             db=1)
+                             database=10)
                 if not isSucceed:
                     print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启'+TextColorWhite)
                     return 1
@@ -278,7 +279,7 @@ class restartHYServer:
             if Choice4FlushDB=='yes':
                 print ('即将清理 Redis缓存....')
                 isSucceed=flushRedisDB(host=self.MasterNodeIP,port=self.MasterNodePort,password=self.MasterNodePassword,
-                             db=10)
+                             database=10)
                 if not isSucceed:
                     print (TextColorRed+'错误：清空Redis 缓存失败，无法继续重启'+TextColorWhite)
                     return 1
@@ -293,7 +294,7 @@ class restartHYServer:
         if not isfile(TmpExecPath):
             print (TextColorRed+'错误：无法找到启动文件：'+'重启失败，请手动启动IPM'+TextColorWhite)
             return 1
-        subprocess.call('sh '+TmpExecPath,shell=True)
+        subprocess.Popen('sh '+TmpExecPath+' &',shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         print ('绩效考核IPM 已经重启完毕，请检查相关日志')
 
 
@@ -344,7 +345,7 @@ class restartHYServer:
                 if (not self.Dict4Arguments['IPMPath']) or (not path.exists(self.Dict4Arguments['IPMPath'])) :
                     print (TextColorRed+'IPM 配置路径有误，无法重启'+TextColorWhite)
                     continue
-                self.restartIIP()
+                self.restartIPM()
             if choice=='0':
                 exit(0)
 
